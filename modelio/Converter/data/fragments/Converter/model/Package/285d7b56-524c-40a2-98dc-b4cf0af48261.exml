@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="converter" version="3">
+  <DEPS>
+    <ID name="converter" mc="Package" uid="285d7b56-524c-40a2-98dc-b4cf0af48261"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="7f23767d-5f33-46b0-ad1f-632eb763531f"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="converter" mc="Package" uid="285d7b56-524c-40a2-98dc-b4cf0af48261"/>
+    <PID name="Converter" mc="Project" uid="c00dc24e-23c5-4a5a-b7b0-38e1badb6ee3"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[converter]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="7f23767d-5f33-46b0-ad1f-632eb763531f"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

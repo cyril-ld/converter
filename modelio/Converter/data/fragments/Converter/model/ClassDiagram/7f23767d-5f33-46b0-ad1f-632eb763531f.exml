@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="overview diagram" version="3">
+  <DEPS>
+    <ID name="overview diagram" mc="ClassDiagram" uid="7f23767d-5f33-46b0-ad1f-632eb763531f"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="overview diagram" mc="ClassDiagram" uid="7f23767d-5f33-46b0-ad1f-632eb763531f"/>
+    <PID name="converter" mc="Package" uid="285d7b56-524c-40a2-98dc-b4cf0af48261"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">0</ATT>
+      <ATT name="UiData"></ATT>
+      <ATT name="PdeProperties"></ATT>
+      <ATT name="Name"><![CDATA[overview diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
