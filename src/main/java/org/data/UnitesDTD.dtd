@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT grandeurs (grandeur+)>
+
+<!ELEMENT grandeur (unites+)>
+<!ATTLIST grandeur nom ID #REQUIRED>
+
+<!ELEMENT unites (unite)+>
+
+<!ELEMENT unite EMPTY>
+<!ATTLIST unite
+    nom ID #REQUIRED
+    symbole CDATA #REQUIRED
+    etalon CDATA #IMPLIED
+    ratio CDATA #REQUIRED>
