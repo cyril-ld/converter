@@ -2,6 +2,7 @@ package org.converter.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,14 +50,14 @@ public class Utils {
      * dans le dossier org.data
      *
      */
-    public static void initGrandeurs() {
+    private static void initGrandeurs() {
 
         DocumentBuilderFactory dbf;
         DocumentBuilder db;
         Document dom;
         Node noeudCourant;
         XPath xPath;
-        String grandeursPath, unitesPath, nomGrandeur, nomUnite, symboleUnite;
+        String grandeursPath, unitesPath, nomGrandeur, nomUnite, symboleUnite, decalageTemp;
         NodeList grandeursList, unitesList;
         Unite uniteTemp;
         ArrayList<Unite> listeUnites;
@@ -97,7 +98,18 @@ public class Utils {
                         uniteTemp.setGrandeur(Utils.getGrandeurFromString(nomGrandeur));
                         uniteTemp.setNom(noeudCourant.getAttributes().getNamedItem("nom").getNodeValue());
                         uniteTemp.setSymbole(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue());
-                        // TODO : reste à fixer le concept de ratio de conversion
+                        if ((noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue() != null)
+                                && noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue().equalsIgnoreCase("true")) {
+                            uniteTemp.setIsEtalon(true);
+                        } else {
+                            uniteTemp.setIsEtalon(false);
+                        }
+                        uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())));
+                        if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
+                            uniteTemp.setDecalage(new BigDecimal(0));
+                        } else {
+                            uniteTemp.setDecalage(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("decalage").getNodeValue())));
+                        }
 
                         listeUnites.add(uniteTemp);
                     }
@@ -158,10 +170,31 @@ public class Utils {
      * @return la liste des unités associées à la grandeur, ou null si aucune unité n'existe dans le fichier de
      *         paramétrage pour la grandeur donnée.
      */
-    public List<Unite> getListeUnitesDepuisGrandeur(Grandeur grandeur) {
+    public static List<Unite> getListeUnitesDepuisGrandeur(Grandeur grandeur) {
         if (grandeurs == null || grandeurs.isEmpty()) {
             initGrandeurs();
         }
         return grandeurs.get(grandeur);
+    }
+
+    /**
+     *
+     * @param grandeur
+     * @param nomUniteCible
+     *
+     * @return
+     */
+    public static Unite getUniteDepuisNomUnite(Grandeur grandeur, String nomUniteCible) {
+        if (nomUniteCible == null || nomUniteCible.isEmpty()) {
+            throw new IllegalArgumentException("Les paramètres ne peuvent pas être vides.");
+        }
+
+        List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(grandeur);
+        for (Unite uniteTemp : listeUnites) {
+            if (uniteTemp.getNom().equalsIgnoreCase(nomUniteCible)) {
+                return uniteTemp;
+            }
+        }
+        return null;
     }
 }

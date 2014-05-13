@@ -12,4 +12,5 @@
     nom ID #REQUIRED
     symbole CDATA #REQUIRED
     etalon CDATA #IMPLIED
-    ratio CDATA #REQUIRED>
+    ratio CDATA #REQUIRED
+    decalage CDATA #IMPLIED>

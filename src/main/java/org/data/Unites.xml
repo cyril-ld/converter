@@ -3,19 +3,19 @@
 <grandeurs>
     <grandeur nom="LONGUEUR">
         <unites>
-            <unite nom="mètre" symbole="m" etalon="true" ratio="1"/>
-            <unite nom="millimètre" symbole="mm" ratio="0.001"/>
-            <unite nom="centimètre" symbole="cm" ratio="0.01"/>
-            <unite nom="decimètre" symbole="dm" ratio="0.1"/>
-            <unite nom="décamètre" symbole="dam" ratio="10"/>
-            <unite nom="hectomètre" symbole="hm" ratio="100"/>
-            <unite nom="kilomètre" symbole="km" ratio="1000"/>
+            <unite nom="metre" symbole="m" etalon="true" ratio="1"/>
+            <unite nom="millimetre" symbole="mm" ratio="0.001"/>
+            <unite nom="centimetre" symbole="cm" ratio="0.01"/>
+            <unite nom="decimetre" symbole="dm" ratio="0.1"/>
+            <unite nom="decametre" symbole="dam" ratio="10"/>
+            <unite nom="hectometre" symbole="hm" ratio="100"/>
+            <unite nom="kilometre" symbole="km" ratio="1000"/>
             <unite nom="yard" symbole="yd" ratio="0.9144"/>
             <unite nom="pouce" symbole="po" ratio="39.37"/>
             <unite nom="pied" symbole="ft" ratio="3.281"/>
             <unite nom="mille_marin" symbole="M" ratio="0.0005399568"/>
             <unite nom="mile_terrestre" symbole="mi" ratio="0.000621504"/>
-            <unite nom="année_lumière" symbole="al" ratio="0.0000000000000000105697"/>
+            <unite nom="annee_lumiere" symbole="al" ratio="0.0000000000000000105697"/>
         </unites>
     </grandeur>
     <grandeur nom="TEMPS">
@@ -27,7 +27,7 @@
             <unite nom="jour" symbole="j" ratio="86400"/>
             <unite nom="semaine" symbole="sem" ratio="604800"/>
             <unite nom="mois" symbole="mois" ratio="2419200"/>
-            <unite nom="année" symbole="an" ratio="29030400"/>
+            <unite nom="annee" symbole="an" ratio="29030400"/>
         </unites>
     </grandeur>
 </grandeurs>
