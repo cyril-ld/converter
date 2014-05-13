@@ -5,6 +5,8 @@
  */
 package org.converter;
 
+import java.util.logging.Logger;
+
 /**
  * Une mesure est une valeur multipliant une unité afin d'exprimer une valeur
  * dans un référentiel donné.
@@ -20,6 +22,11 @@ package org.converter;
  */
 public class Mesure {
 
+    /**
+     * Logger par défaut
+     */
+    private static final Logger LOG = Logger.getLogger(Mesure.class.getName());
+    
     /**
      * Valeur de la mesure
      */

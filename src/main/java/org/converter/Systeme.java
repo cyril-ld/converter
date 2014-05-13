@@ -12,5 +12,5 @@ package org.converter;
  */
 public enum Systeme {
     METRIQUE,
-    IMPERIAL
+    IMPERIAL;
 }

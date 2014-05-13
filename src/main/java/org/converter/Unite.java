@@ -3,23 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.converter;
+
+import java.util.logging.Logger;
 
 /**
  *
  * @author Cyril
  */
-class Unite {
-    
+public class Unite {
+
     /**
      * Type d'unité
      */
     private Grandeur grandeur;
-    
+
     private String nom;
-    
+
     private String symbole;
     
-    private Systeme systeme;
+    /**
+     * Constructeur par défaut
+     */
+    public Unite() {
+        
+    }
+    
+    public Grandeur getGrandeur() {
+        return grandeur;
+    }
+
+    public void setGrandeur(Grandeur grandeur) {
+        this.grandeur = grandeur;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getSymbole() {
+        return symbole;
+    }
+
+    public void setSymbole(String symbole) {
+        this.symbole = symbole;
+    }
+
+    private static final Logger LOG = Logger.getLogger(Unite.class.getName());
 }
