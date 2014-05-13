@@ -21,6 +21,13 @@
     <grandeur nom="TEMPS">
         <unites>
             <unite nom="seconde" symbole="s" ratio="1"/>
+            <unite nom="milliseconde" symbole="ms" ratio="0.001"/>
+            <unite nom="minute" symbole="m" ratio="60"/>
+            <unite nom="heure" symbole="h" ratio="3600"/>
+            <unite nom="jour" symbole="j" ratio="86400"/>
+            <unite nom="semaine" symbole="sem" ratio="604800"/>
+            <unite nom="mois" symbole="mois" ratio="2419200"/>
+            <unite nom="année" symbole="an" ratio="29030400"/>
         </unites>
     </grandeur>
 </grandeurs>

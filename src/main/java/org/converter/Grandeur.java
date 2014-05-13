@@ -10,16 +10,12 @@ package org.converter;
  *
  * @author Cyril
  */
-class Unite {
-    
-    /**
-     * Type d'unité
-     */
-    private Grandeur grandeur;
-    
-    private String nom;
-    
-    private String symbole;
-    
-    private Systeme systeme;
+public enum Grandeur {
+    LONGUEUR,
+    TEMPS,
+    MASSE,
+    TEMPERATURE,
+    MATIERE,
+    COURANT_ELECTRIQUE,
+    INTENSITE_LUMINEUSE
 }

@@ -30,4 +30,36 @@ public class Mesure {
      */
     private Unite unite;
 
+    /**
+     * Retourne la valeur de la mesure
+     * @return 
+     */
+    public float getValeur() {
+        return valeur;
+    }
+
+    /**
+     * Modifie la valeur de la mesure
+     * @param valeur 
+     */
+    public void setValeur(float valeur) {
+        this.valeur = valeur;
+    }
+
+    /**
+     * Retourne l'unité de la mesure
+     * @return 
+     */
+    public Unite getUnite() {
+        return unite;
+    }
+
+    /**
+     * Modifie la valeur de l'unité
+     * @param unite 
+     */
+    public void setUnite(Unite unite) {
+        this.unite = unite;
+    }
+
 }
