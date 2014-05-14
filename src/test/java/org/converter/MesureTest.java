@@ -98,6 +98,17 @@ public class MesureTest {
         assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
     }
 
+    @Test
+    public void testConvertToTemps() {
+        LOG.log(Level.INFO, "testConvertToTemps");
+        String nomUniteCible = "JOUR";
+        Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "SEMAINE");
+        BigDecimal expResult = new BigDecimal(7);
+        Mesure result = mesure.convertTo(nomUniteCible);
+        LOG.log(Level.INFO, "testConvertToTemps : expResult.doubleValue() = {0}, result.getValeur().doubleValue() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+        assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
+    }
+
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());
 
 }

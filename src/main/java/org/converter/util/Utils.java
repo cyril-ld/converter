@@ -58,7 +58,7 @@ public class Utils {
         Document dom;
         Node noeudCourant;
         XPath xPath;
-        String grandeursPath, unitesPath, nomGrandeur, nomUnite, symboleUnite, decalageTemp;
+        String grandeursPath, unitesPath, nomGrandeur;
         NodeList grandeursList, unitesList;
         Unite uniteTemp;
         ArrayList<Unite> listeUnites;
@@ -109,15 +109,8 @@ public class Utils {
                         if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
                             uniteTemp.setDecalage(new BigDecimal(0));
                         } else {
-                            uniteTemp.setDecalage(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("decalage").getNodeValue())));
+                            uniteTemp.setDecalage(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("decalage").getNodeValue())).round(MathContext.DECIMAL32));
                         }
-
-                        LOG.log(Level.INFO, "========== Grandeur: {0}", uniteTemp.getGrandeur().toString());
-                        LOG.log(Level.INFO, "========== Nom : {0}", uniteTemp.getNom());
-                        LOG.log(Level.INFO, "========== Symbole : {0}", uniteTemp.getSymbole());
-                        LOG.log(Level.INFO, "========== Ratio : {0}", uniteTemp.getRatio().toString());
-                        LOG.log(Level.INFO, "========== Decalage : {0}", uniteTemp.getDecalage().toString());
-
                         listeUnites.add(uniteTemp);
                     }
                     grandeurs.put(Utils.getGrandeurFromString(nomGrandeur), listeUnites);
