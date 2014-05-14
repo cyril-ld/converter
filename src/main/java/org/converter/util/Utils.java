@@ -3,6 +3,7 @@ package org.converter.util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,12 +105,18 @@ public class Utils {
                         } else {
                             uniteTemp.setIsEtalon(false);
                         }
-                        uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())));
+                        uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())).round(MathContext.DECIMAL32));
                         if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
                             uniteTemp.setDecalage(new BigDecimal(0));
                         } else {
                             uniteTemp.setDecalage(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("decalage").getNodeValue())));
                         }
+
+                        LOG.log(Level.INFO, "========== Grandeur: {0}", uniteTemp.getGrandeur().toString());
+                        LOG.log(Level.INFO, "========== Nom : {0}", uniteTemp.getNom());
+                        LOG.log(Level.INFO, "========== Symbole : {0}", uniteTemp.getSymbole());
+                        LOG.log(Level.INFO, "========== Ratio : {0}", uniteTemp.getRatio().toString());
+                        LOG.log(Level.INFO, "========== Decalage : {0}", uniteTemp.getDecalage().toString());
 
                         listeUnites.add(uniteTemp);
                     }
