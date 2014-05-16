@@ -89,7 +89,7 @@ public class MesureTest {
      * Test of convertTo method, of class Mesure.
      */
     @Test
-    public void testConvertTo() {
+    public void testConvertToDistance() {
         LOG.log(Level.INFO, "convertTo");
         String nomUniteCible = "MILLIMETRE";
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
@@ -107,6 +107,13 @@ public class MesureTest {
         Mesure result = mesure.convertTo(nomUniteCible);
         LOG.log(Level.INFO, "testConvertToTemps : expResult.doubleValue() = {0}, result.getValeur().doubleValue() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
         assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
+    }
+    
+    public void testConvertToTempsUneDistance() {
+        LOG.log(Level.INFO, "testConvertToTempsUneDistance");
+        String nomUniteCible = "TEMPS";
+        Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "METRE");
+        Mesure result = mesure.convertTo(nomUniteCible);
     }
 
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());

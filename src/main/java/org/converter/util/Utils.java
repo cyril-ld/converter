@@ -1,6 +1,7 @@
 package org.converter.util;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -123,13 +124,16 @@ public class Utils {
     }
 
     /**
-     * Retourne la valeur de l'énumération correspondant à la chaîne de caractères demandée.
+     * Retourne la valeur de l'énumération correspondant à la chaîne de
+     * caractères demandée.
      *
-     * @param grandeur la représentation de la grandeur sous forme de chaîne de caractères
+     * @param grandeur la représentation de la grandeur sous forme de chaîne de
+     * caractères
      *
      * @return Grandeur, la grandeur correspondante
      *
-     * @throws IllegalArgumentException si la chaîne demandée ne correspond à aucune grandeur connue
+     * @throws IllegalArgumentException si la chaîne demandée ne correspond à
+     * aucune grandeur connue
      */
     public static Grandeur getGrandeurFromString(String grandeur) {
 
@@ -167,8 +171,8 @@ public class Utils {
      *
      * @param grandeur
      *
-     * @return la liste des unités associées à la grandeur, ou null si aucune unité n'existe dans le fichier de
-     *         paramétrage pour la grandeur donnée.
+     * @return la liste des unités associées à la grandeur, ou null si aucune
+     * unité n'existe dans le fichier de paramétrage pour la grandeur donnée.
      */
     public static List<Unite> getListeUnitesDepuisGrandeur(Grandeur grandeur) {
         if (grandeurs == null || grandeurs.isEmpty()) {
@@ -196,5 +200,50 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    /**
+     * TODO
+     *
+     * @param Unite
+     * @return
+     */
+    public Grandeur getGrandeurFromUnite(String unite) {
+
+        DocumentBuilderFactory dbf;
+        DocumentBuilder db;
+        Document dom;
+        Node noeudCourant;
+        XPath xPath;
+        String grandeursPath, unitesPath, nomGrandeur;
+        NodeList grandeursList, unitesList;
+        Grandeur ret = null;
+
+        try {
+
+            // Création des objets utilitaires
+            dbf = DocumentBuilderFactory.newInstance();
+            db = dbf.newDocumentBuilder();
+            dom = db.parse(new FileInputStream("src/main/java/org/data/Unites.xml"));
+            xPath = XPathFactory.newInstance().newXPath();
+            // Chemin des grandeurs dans le XML
+            grandeursPath = "/grandeurs/grandeur";
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException | IOException | ParserConfigurationException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+
+    /**
+     * TODO
+     *
+     * @param unite
+     * @return
+     */
+    public Grandeur getGrandeurFromUnite(Unite unite) {
+
     }
 }
