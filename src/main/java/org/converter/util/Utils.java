@@ -128,12 +128,12 @@ public class Utils {
      * caractères demandée.
      *
      * @param grandeur la représentation de la grandeur sous forme de chaîne de
-     * caractères
+     *                 caractères
      *
      * @return Grandeur, la grandeur correspondante
      *
      * @throws IllegalArgumentException si la chaîne demandée ne correspond à
-     * aucune grandeur connue
+     *                                  aucune grandeur connue
      */
     public static Grandeur getGrandeurFromString(String grandeur) {
 
@@ -172,7 +172,7 @@ public class Utils {
      * @param grandeur
      *
      * @return la liste des unités associées à la grandeur, ou null si aucune
-     * unité n'existe dans le fichier de paramétrage pour la grandeur donnée.
+     *         unité n'existe dans le fichier de paramétrage pour la grandeur donnée.
      */
     public static List<Unite> getListeUnitesDepuisGrandeur(Grandeur grandeur) {
         if (grandeurs == null || grandeurs.isEmpty()) {
@@ -203,20 +203,19 @@ public class Utils {
     }
 
     /**
-     * TODO
+     * Permet de retrouver une grandeur depuis une unité particulière.
      *
-     * @param Unite
-     * @return
+     * @param unite - l'unité dont on souhaite retrouver la grandeur
+     *
+     * @return la grandeur correspondante
      */
     public Grandeur getGrandeurFromUnite(String unite) {
 
         DocumentBuilderFactory dbf;
         DocumentBuilder db;
         Document dom;
-        Node noeudCourant;
         XPath xPath;
-        String grandeursPath, unitesPath, nomGrandeur;
-        NodeList grandeursList, unitesList;
+        String nomGrandeurPath, nomGrandeur;
         Grandeur ret = null;
 
         try {
@@ -226,24 +225,36 @@ public class Utils {
             db = dbf.newDocumentBuilder();
             dom = db.parse(new FileInputStream("src/main/java/org/data/Unites.xml"));
             xPath = XPathFactory.newInstance().newXPath();
+
+            // TODO Ici pour rendre le code plus robuste, on pourrait blinder la recherche
+            // de la grandeur (prise en compte accents, majuscules, injections, etc.)
             // Chemin des grandeurs dans le XML
-            grandeursPath = "/grandeurs/grandeur";
-            
+            nomGrandeurPath = "/grandeurs/grandeur[unites/unite/@nom='" + unite.toLowerCase() + "']/@nom";
+
+            // Récupération de la liste des noeuds de grandeurs
+            nomGrandeur = (String) xPath.compile(nomGrandeurPath).evaluate(dom, XPathConstants.STRING);
+
+            if (nomGrandeur == null || nomGrandeur.isEmpty()) {
+                throw new IllegalArgumentException("L'unité passée en paramètre n'a pas été reconnue");
+            }
+            ret = getGrandeurFromString(nomGrandeur);
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException | IOException | ParserConfigurationException ex) {
+        } catch (SAXException | IOException | ParserConfigurationException | XPathExpressionException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
     }
 
     /**
-     * TODO
+     * Permet de retrouver une grandeur depuis une unité particulière.
      *
-     * @param unite
-     * @return
+     * @param unite - l'unité dont on souhaite retrouver la grandeur.
+     *
+     * @return la grandeur correspondante
      */
     public Grandeur getGrandeurFromUnite(Unite unite) {
-
+        return getGrandeurFromString(unite.getNom());
     }
 }
