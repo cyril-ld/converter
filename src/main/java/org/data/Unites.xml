@@ -30,4 +30,10 @@
             <unite nom="annee" symbole="an" ratio="29030400"/>
         </unites>
     </grandeur>
+    <grandeur nom="TEMPERATURE">
+        <unites>
+            <unite nom="degre_celsius" symbole="°C" ratio="1"/>
+            <unite nom="kelvin" symbole="K" ratio="1" decalage="273.15"/>
+        </unites>
+    </grandeur>
 </grandeurs>

@@ -123,6 +123,11 @@ public class Mesure {
                 // On converti la valeur dans l'unité cible
                 ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal("1")).divide(uniteTemp.getRatio()));
 
+                // Si l'unité a un décalage, on l'ajoute et on enlève 1 pour ne pas fausser la mesure
+                if (uniteTemp.getDecalage().doubleValue() != 0.0) {
+                    ret.setValeur(ret.getValeur().add(new BigDecimal(uniteTemp.getDecalage().toString())));
+                }
+
                 ret.setUnite(uniteTemp);
                 break;
             }

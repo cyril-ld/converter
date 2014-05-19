@@ -6,8 +6,10 @@
 package org.converter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import junit.framework.Assert;
 import static junit.framework.Assert.assertNull;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -124,6 +126,40 @@ public class MesureTest {
         LOG.log(Level.INFO, "TEST ============= testCreationMesureMauvaiseGrandeur");
         Mesure mesure;
         mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "METRE");
+        Assert.fail("La mesure " + mesure.getUnite().getNom() + " a été initialisée à tord.");
+    }
+
+    @Test
+    public void testConvertTemperatureAvecDecalage() {
+        LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalage");
+        String nomUniteCible = "KELVIN";
+        Mesure mesure = new Mesure(new BigDecimal(BigInteger.ONE), Grandeur.TEMPERATURE, "degre_celsius");
+        BigDecimal expResult = new BigDecimal("274.15");
+        Mesure result = mesure.convertTo(nomUniteCible);
+        LOG.log(Level.INFO, "testConvertTemperatureAvecDecalage : expResult.toString() = {0}, result.getValeur().toString() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
+    }
+
+    @Test
+    public void testConvertTemperatureAvecDecalageBis() {
+        LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalage");
+        String nomUniteCible = "KELVIN";
+        Mesure mesure = new Mesure(new BigDecimal("3"), Grandeur.TEMPERATURE, "degre_celsius");
+        BigDecimal expResult = new BigDecimal("273.15").add(new BigDecimal("3"));
+        Mesure result = mesure.convertTo(nomUniteCible);
+        LOG.log(Level.INFO, "testConvertTemperatureAvecDecalage : expResult.toString() = {0}, result.getValeur().toString() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
+    }
+
+    @Test
+    public void testConvertTemperatureAvecDecalageEtReel() {
+        LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalage");
+        String nomUniteCible = "KELVIN";
+        Mesure mesure = new Mesure(new BigDecimal("3.5"), Grandeur.TEMPERATURE, "degre_celsius");
+        BigDecimal expResult = new BigDecimal("273.15").add(new BigDecimal("3.5"));
+        Mesure result = mesure.convertTo(nomUniteCible);
+        LOG.log(Level.INFO, "testConvertTemperatureAvecDecalage : expResult.toString() = {0}, result.getValeur().toString() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
     }
 
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());
