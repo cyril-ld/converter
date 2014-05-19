@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class Utils {
         String grandeursPath, unitesPath, nomGrandeur;
         NodeList grandeursList, unitesList;
         Unite uniteTemp;
-        ArrayList<Unite> listeUnites;
+        List<Unite> listeUnites;
 
         if (grandeurs == null) {
             grandeurs = new HashMap<>();
@@ -101,14 +102,14 @@ public class Utils {
                         uniteTemp.setNom(noeudCourant.getAttributes().getNamedItem("nom").getNodeValue());
                         uniteTemp.setSymbole(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue());
                         if ((noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue() != null)
-                                && noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue().equalsIgnoreCase("true")) {
+                                && "true".equalsIgnoreCase(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue())) {
                             uniteTemp.setIsEtalon(true);
                         } else {
                             uniteTemp.setIsEtalon(false);
                         }
                         uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())).round(MathContext.DECIMAL32));
                         if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
-                            uniteTemp.setDecalage(new BigDecimal(0));
+                            uniteTemp.setDecalage(new BigDecimal(BigInteger.ZERO));
                         } else {
                             uniteTemp.setDecalage(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("decalage").getNodeValue())).round(MathContext.DECIMAL32));
                         }

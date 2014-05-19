@@ -7,7 +7,6 @@ package org.converter;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.logging.Logger;
 import org.converter.util.Utils;
 
 /**
@@ -26,11 +25,6 @@ import org.converter.util.Utils;
 public class Mesure {
 
     /**
-     * Logger par défaut
-     */
-    private static final Logger LOG = Logger.getLogger(Mesure.class.getName());
-
-    /**
      * Valeur de la mesure
      */
     private BigDecimal valeur;
@@ -40,6 +34,9 @@ public class Mesure {
      */
     private Unite unite;
 
+    /**
+     * Constructeur par défaut
+     */
     public Mesure() {
     }
 
@@ -121,19 +118,16 @@ public class Mesure {
                 ret = new Mesure();
 
                 // On converti la valeur courante dans l'unité étalon : valeur mesure * ratio mesure
-//                valeurUniteEtalon = (this.valeur * this.unite.getRatio()) - this.unite.getDecalage();
                 valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).subtract(this.unite.getDecalage());
 
                 // On converti la valeur dans l'unité cible
-                // = mesure dans l'unité étalon * (ratio de l'unité étalon/ratio de l'unité courante)
-//                ret.setValeur((valeurUniteEtalon * (1.0F / uniteTemp.getRatio())));
-                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal(1.0)).divide(uniteTemp.getRatio()));
+                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal("1")).divide(uniteTemp.getRatio()));
 
                 ret.setUnite(uniteTemp);
                 break;
             }
         }
-        
+
         return ret;
     }
 }

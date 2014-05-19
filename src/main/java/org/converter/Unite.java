@@ -6,7 +6,6 @@
 package org.converter;
 
 import java.math.BigDecimal;
-import java.util.logging.Logger;
 
 /**
  *
@@ -70,53 +69,105 @@ public class Unite {
         this.decalage = decalage;
     }
 
+    /**
+     * Returns the grandeur
+     *
+     * @return
+     */
     public Grandeur getGrandeur() {
         return grandeur;
     }
 
+    /**
+     * Sets the grandeur
+     *
+     * @param grandeur
+     */
     public void setGrandeur(Grandeur grandeur) {
         this.grandeur = grandeur;
     }
 
+    /**
+     * Retourne le nom
+     *
+     * @return
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Affecte un nouveau nom
+     *
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Retourne le ratio
+     *
+     * @return
+     */
     public BigDecimal getRatio() {
         return ratio;
     }
 
+    /**
+     * Affecte le ratio
+     *
+     * @param ratio
+     */
     public void setRatio(BigDecimal ratio) {
         this.ratio = ratio;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getDecalage() {
         return decalage;
     }
 
+    /**
+     *
+     * @param decalage
+     */
     public void setDecalage(BigDecimal decalage) {
         this.decalage = decalage;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSymbole() {
         return symbole;
     }
 
+    /**
+     *
+     * @param symbole
+     */
     public void setSymbole(String symbole) {
         this.symbole = symbole;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isIsEtalon() {
         return isEtalon;
     }
 
+    /**
+     *
+     * @param isEtalon
+     */
     public void setIsEtalon(boolean isEtalon) {
         this.isEtalon = isEtalon;
     }
-
-    private static final Logger LOG = Logger.getLogger(Unite.class.getName());
 }
