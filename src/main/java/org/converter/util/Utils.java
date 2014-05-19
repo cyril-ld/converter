@@ -199,7 +199,7 @@ public class Utils {
                 return uniteTemp;
             }
         }
-        return null;
+        throw new IllegalArgumentException("La grandeur " + grandeur.toString() + " est incompatible avec l'unité " + nomUniteCible);
     }
 
     /**

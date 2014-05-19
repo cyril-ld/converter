@@ -8,6 +8,7 @@ package org.converter;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static junit.framework.Assert.assertNull;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -45,7 +46,7 @@ public class MesureTest {
      */
     @Test
     public void testGetValeur() {
-        LOG.log(Level.INFO, "getValeur");
+        LOG.log(Level.INFO, "TEST ============= getValeur");
         Mesure instance = new Mesure(new BigDecimal(0.0), null);
         BigDecimal expResult = new BigDecimal(0.0);
         assertEquals(expResult.doubleValue(), instance.getValeur().doubleValue(), 0.0);
@@ -56,7 +57,7 @@ public class MesureTest {
      */
     @Test
     public void testSetValeur() {
-        LOG.log(Level.INFO, "setValeur");
+        LOG.log(Level.INFO, "TEST ============= setValeur");
         BigDecimal valeur = new BigDecimal(0);
         Mesure instance = new Mesure();
         instance.setValeur(valeur);
@@ -67,7 +68,7 @@ public class MesureTest {
      */
     @Test
     public void testGetUnite() {
-        LOG.log(Level.INFO, "getUnite");
+        LOG.log(Level.INFO, "TEST ============= getUnite");
         Mesure instance = new Mesure();
         Unite expResult = null;
         Unite result = instance.getUnite();
@@ -79,7 +80,7 @@ public class MesureTest {
      */
     @Test
     public void testSetUnite() {
-        LOG.log(Level.INFO, "setUnite");
+        LOG.log(Level.INFO, "TEST ============= setUnite");
         Unite unite = null;
         Mesure instance = new Mesure();
         instance.setUnite(unite);
@@ -90,7 +91,7 @@ public class MesureTest {
      */
     @Test
     public void testConvertToDistance() {
-        LOG.log(Level.INFO, "convertTo");
+        LOG.log(Level.INFO, "TEST ============= convertTo");
         String nomUniteCible = "MILLIMETRE";
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
         BigDecimal expResult = new BigDecimal(1000);
@@ -100,20 +101,29 @@ public class MesureTest {
 
     @Test
     public void testConvertToTemps() {
-        LOG.log(Level.INFO, "testConvertToTemps");
+        LOG.log(Level.INFO, "TEST ============= testConvertToTemps");
         String nomUniteCible = "JOUR";
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "SEMAINE");
         BigDecimal expResult = new BigDecimal(7);
         Mesure result = mesure.convertTo(nomUniteCible);
-        LOG.log(Level.INFO, "testConvertToTemps : expResult.doubleValue() = {0}, result.getValeur().doubleValue() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+//        LOG.log(Level.INFO, "testConvertToTemps : expResult.doubleValue() = {0}, result.getValeur().doubleValue() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
         assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
     }
-    
+
+    @Test
     public void testConvertToTempsUneDistance() {
-        LOG.log(Level.INFO, "testConvertToTempsUneDistance");
+        LOG.log(Level.INFO, "TEST ============= testConvertToTempsUneDistance");
         String nomUniteCible = "TEMPS";
-        Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "METRE");
+        Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
         Mesure result = mesure.convertTo(nomUniteCible);
+        assertNull(result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationMesureMauvaiseGrandeur() {
+        LOG.log(Level.INFO, "TEST ============= testCreationMesureMauvaiseGrandeur");
+        Mesure mesure;
+        mesure = new Mesure(new BigDecimal(1), Grandeur.TEMPS, "METRE");
     }
 
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());

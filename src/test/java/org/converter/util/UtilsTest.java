@@ -50,7 +50,7 @@ public class UtilsTest {
     @Ignore
     @Test
     public void testGetGrandeurFromString() {
-        LOG.log(Level.INFO, "getGrandeurFromString");
+        LOG.log(Level.INFO, "TEST ============= getGrandeurFromString");
         String grandeur = "";
         Grandeur expResult = null;
         Grandeur result = Utils.getGrandeurFromString(grandeur);
@@ -65,7 +65,7 @@ public class UtilsTest {
     @Ignore
     @Test
     public void testGetListeUnitesDepuisGrandeur() {
-        LOG.log(Level.INFO, "getListeUnitesDepuisGrandeur");
+        LOG.log(Level.INFO, "TEST ============= getListeUnitesDepuisGrandeur");
         Grandeur grandeur = null;
         List<Unite> expResult = null;
         List<Unite> result = Utils.getListeUnitesDepuisGrandeur(grandeur);
@@ -79,7 +79,7 @@ public class UtilsTest {
      */
     @Test
     public void testGetUniteDepuisNomUnite() {
-        LOG.log(Level.INFO, "getUniteDepuisNomUnite");
+        LOG.log(Level.INFO, "TEST ============= getUniteDepuisNomUnite");
         Grandeur grandeur = Grandeur.LONGUEUR;
         String nomUniteCible = "millimetre";
         Unite result = Utils.getUniteDepuisNomUnite(grandeur, nomUniteCible);
@@ -91,7 +91,7 @@ public class UtilsTest {
      */
     @Test
     public void testGetGrandeurFromUnite_String() {
-        LOG.log(Level.INFO, "getGrandeurFromUnite");
+        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
         String unite = "millimetre";
         Utils instance = new Utils();
         Grandeur expResult = Grandeur.LONGUEUR;
@@ -104,7 +104,7 @@ public class UtilsTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testGetGrandeurFromUnite_String_Unite_Inexistante() {
-        LOG.log(Level.INFO, "getGrandeurFromUnite");
+        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
         String unite = "millimètre";
         Utils instance = new Utils();
         Grandeur expResult = Grandeur.LONGUEUR;
@@ -118,7 +118,7 @@ public class UtilsTest {
     @Ignore
     @Test
     public void testGetGrandeurFromUnite_Unite() {
-        LOG.log(Level.INFO, "getGrandeurFromUnite");
+        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
         Unite unite = null;
         Utils instance = new Utils();
         Grandeur expResult = null;
