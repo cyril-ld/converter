@@ -6,6 +6,7 @@
 package org.converter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import org.converter.util.Utils;
 
@@ -106,7 +107,7 @@ public class Mesure {
      *
      * @return la mesure une fois convertie
      */
-    public Mesure convertTo(String nomUniteCible) {
+    public Mesure convertTo(String nomUniteCible) throws IllegalArgumentException {
 
         List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(this.unite.getGrandeur());
         Mesure ret = null;
@@ -121,7 +122,7 @@ public class Mesure {
                 valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).subtract(this.unite.getDecalage());
 
                 // On converti la valeur dans l'unité cible
-                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal("1")).divide(uniteTemp.getRatio()));
+                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal(BigInteger.ONE)).divide(uniteTemp.getRatio()));
 
                 // Si l'unité a un décalage, on l'ajoute et on enlève 1 pour ne pas fausser la mesure
                 if (uniteTemp.getDecalage().doubleValue() != 0.0) {
@@ -133,6 +134,9 @@ public class Mesure {
             }
         }
 
+        if (ret == null) {
+            throw new IllegalArgumentException("Aucune convertion possible pour l'unité demandée !");
+        }
         return ret;
     }
 }

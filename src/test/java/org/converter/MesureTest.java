@@ -10,7 +10,6 @@ import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import junit.framework.Assert;
-import static junit.framework.Assert.assertNull;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -112,13 +111,13 @@ public class MesureTest {
         assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testConvertToTempsUneDistance() {
         LOG.log(Level.INFO, "TEST ============= testConvertToTempsUneDistance");
         String nomUniteCible = "TEMPS";
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
         Mesure result = mesure.convertTo(nomUniteCible);
-        assertNull(result);
+        Assert.fail("On doit lever une exception de conversion : " + result.getUnite().getNom());
     }
 
     @Test(expected = IllegalArgumentException.class)
