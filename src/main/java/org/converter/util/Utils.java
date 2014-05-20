@@ -101,12 +101,6 @@ public class Utils {
                         uniteTemp.setGrandeur(Utils.getGrandeurFromString(nomGrandeur));
                         uniteTemp.setNom(noeudCourant.getAttributes().getNamedItem("nom").getNodeValue());
                         uniteTemp.setSymbole(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue());
-                        if ((noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue() != null)
-                                && "true".equalsIgnoreCase(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue())) {
-                            uniteTemp.setIsEtalon(true);
-                        } else {
-                            uniteTemp.setIsEtalon(false);
-                        }
                         uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())).round(MathContext.DECIMAL32));
                         if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
                             uniteTemp.setDecalage(new BigDecimal(BigInteger.ZERO));
@@ -210,7 +204,7 @@ public class Utils {
      *
      * @return la grandeur correspondante
      */
-    public Grandeur getGrandeurFromUnite(String unite) {
+    public static Grandeur getGrandeurFromUnite(String unite) {
 
         DocumentBuilderFactory dbf;
         DocumentBuilder db;

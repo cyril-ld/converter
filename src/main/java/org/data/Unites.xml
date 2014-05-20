@@ -20,7 +20,7 @@
     </grandeur>
     <grandeur nom="TEMPS">
         <unites>
-            <unite nom="seconde" symbole="s" ratio="1"/>
+            <unite nom="seconde" symbole="s" ratio="1" etalon="true"/>
             <unite nom="milliseconde" symbole="ms" ratio="0.001"/>
             <unite nom="minute" symbole="m" ratio="60"/>
             <unite nom="heure" symbole="h" ratio="3600"/>

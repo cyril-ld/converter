@@ -29,11 +29,6 @@ public class Unite {
     private String symbole;
 
     /**
-     * Marque l'unité comme étalon de comparaison pour la conversion
-     */
-    private boolean isEtalon;
-
-    /**
      * Ratio de conversion
      */
     private BigDecimal ratio;
@@ -64,7 +59,6 @@ public class Unite {
         this.grandeur = grandeur;
         this.nom = nom;
         this.symbole = symbole;
-        this.isEtalon = isEtalon;
         this.ratio = ratio;
         this.decalage = decalage;
     }
@@ -153,21 +147,5 @@ public class Unite {
      */
     public void setSymbole(String symbole) {
         this.symbole = symbole;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isIsEtalon() {
-        return isEtalon;
-    }
-
-    /**
-     *
-     * @param isEtalon
-     */
-    public void setIsEtalon(boolean isEtalon) {
-        this.isEtalon = isEtalon;
     }
 }

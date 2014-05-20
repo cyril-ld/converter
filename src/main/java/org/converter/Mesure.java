@@ -107,7 +107,7 @@ public class Mesure {
      *
      * @return la mesure une fois convertie
      */
-    public Mesure convertTo(String nomUniteCible) throws IllegalArgumentException {
+    public Mesure convertTo(String nomUniteCible) {
 
         List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(this.unite.getGrandeur());
         Mesure ret = null;

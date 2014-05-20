@@ -12,6 +12,7 @@ import org.converter.Grandeur;
 import org.converter.Unite;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
@@ -93,9 +94,8 @@ public class UtilsTest {
     public void testGetGrandeurFromUnite_String() {
         LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
         String unite = "millimetre";
-        Utils instance = new Utils();
         Grandeur expResult = Grandeur.LONGUEUR;
-        Grandeur result = instance.getGrandeurFromUnite(unite);
+        Grandeur result = Utils.getGrandeurFromUnite(unite);
         assertEquals(expResult, result);
     }
 
@@ -104,27 +104,60 @@ public class UtilsTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testGetGrandeurFromUnite_String_Unite_Inexistante() {
-        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromUnite_String_Unite_Inexistante");
         String unite = "millimètre";
-        Utils instance = new Utils();
         Grandeur expResult = Grandeur.LONGUEUR;
-        Grandeur result = instance.getGrandeurFromUnite(unite);
+        Grandeur result = Utils.getGrandeurFromUnite(unite);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getGrandeurFromUnite method, of class Utils.
-     */
-    @Ignore
     @Test
-    public void testGetGrandeurFromUnite_Unite() {
-        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
-        Unite unite = null;
-        Utils instance = new Utils();
-        Grandeur expResult = null;
-        Grandeur result = instance.getGrandeurFromUnite(unite);
-        assertEquals(expResult, result);
+    public void testGetGrandeurFromStringCourantElectrique() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromStringCourantElectrique");
+        String grandeur = "COURANT_ELECTRIQUE";
+        Grandeur expResult = Grandeur.COURANT_ELECTRIQUE;
+        Assert.assertEquals(Utils.getGrandeurFromString(grandeur), expResult);
     }
+
+    @Test
+    public void testGetGrandeurFromStringIntensiteLumineuse() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromStringIntensiteLumineuse");
+        String grandeur = "INTENSITE_LUMINEUSE";
+        Grandeur expResult = Grandeur.INTENSITE_LUMINEUSE;
+        Assert.assertEquals(Utils.getGrandeurFromString(grandeur), expResult);
+    }
+
+    @Test
+    public void testGetGrandeurFromStringMasse() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromStringMasse");
+        String grandeur = "MASSE";
+        Grandeur expResult = Grandeur.MASSE;
+        Assert.assertEquals(Utils.getGrandeurFromString(grandeur), expResult);
+    }
+
+    @Test
+    public void testGetGrandeurFromStringMatiere() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromStringMatiere");
+        String grandeur = "MATIERE";
+        Grandeur expResult = Grandeur.MATIERE;
+        Assert.assertEquals(Utils.getGrandeurFromString(grandeur), expResult);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetGrandeurFromStringException() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromStringMatiere");
+        String grandeur = "FAIL";
+        Grandeur result = Utils.getGrandeurFromString(grandeur);
+        Assert.fail("La grandeur FAIL ne doit pas exister dans le fichier" + result.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetUniteDepuisNomUniteException() {
+        LOG.log(Level.INFO, "TEST ============= testGetUniteDepuisNomUniteException");
+        Unite result = Utils.getUniteDepuisNomUnite(Grandeur.LONGUEUR, null);
+        Assert.fail("Le système ne doit pas permettre de trouver une unité depuis une chaîne vide" + result.getNom());
+    }
+
     private static final Logger LOG = Logger.getLogger(UtilsTest.class.getName());
 
 }
