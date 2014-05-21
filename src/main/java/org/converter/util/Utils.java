@@ -49,6 +49,13 @@ public class Utils {
     private static Map<Grandeur, List<Unite>> grandeurs;
 
     /**
+     * Pas de constructeur public pour les classes privées !
+     */
+    private Utils() {
+
+    }
+
+    /**
      * Initialise la map des grandeurs depuis le fichier "Unites.xml" contenu
      * dans le dossier org.data
      *
