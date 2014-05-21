@@ -13,9 +13,8 @@
             <unite nom="yard" symbole="yd" ratio="0.9144"/>
             <unite nom="pouce" symbole="po" ratio="39.37"/>
             <unite nom="pied" symbole="ft" ratio="3.281"/>
-            <unite nom="mille_marin" symbole="M" ratio="0.0005399568"/>
-            <unite nom="mile_terrestre" symbole="mi" ratio="0.000621504"/>
-            <unite nom="annee_lumiere" symbole="al" ratio="0.0000000000000000105697"/>
+            <unite nom="mille_marin" symbole="M" ratio="1852"/>
+            <unite nom="mile_terrestre" symbole="mi" ratio="1609.344"/>
         </unites>
     </grandeur>
     <grandeur nom="TEMPS">
@@ -34,7 +33,7 @@
         <unites>
             <unite nom="degre_celsius" symbole="°C" ratio="1"/>
             <unite nom="kelvin" symbole="K" ratio="1" decalage="273.15"/>
-            <unite nom="Fahrenheit" symbole="°F" ratio="0.8474576271186441" decalage="-32"/>
+            <unite nom="Fahrenheit" symbole="°F" ratio="1.8" decalage="32"/>
         </unites>
     </grandeur>
 </grandeurs>

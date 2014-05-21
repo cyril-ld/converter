@@ -123,7 +123,7 @@ public class Mesure {
                 valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).subtract(this.unite.getDecalage());
 
                 // On converti la valeur dans l'unité cible :
-                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal(BigInteger.ONE)).divide(uniteTemp.getRatio(), RoundingMode.CEILING));
+                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal(BigInteger.ONE)).divide(uniteTemp.getRatio(), 15, RoundingMode.FLOOR));
 
                 // Si l'unité a un décalage, on l'ajoute et on enlève 1 pour ne pas fausser la mesure
                 if (uniteTemp.getDecalage().doubleValue() != 0.0) {
