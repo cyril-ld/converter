@@ -50,7 +50,7 @@ public class UniteTest {
     @Test
     public void testGetGrandeur() {
         LOG.log(Level.INFO, "TEST ============= testGetGrandeur");
-        Unite instance = new Unite(Grandeur.LONGUEUR, null, null, true, BigDecimal.ZERO, BigDecimal.ZERO);
+        Unite instance = new Unite(Grandeur.LONGUEUR, null, null, BigDecimal.ZERO, BigDecimal.ZERO);
         Grandeur expResult = Grandeur.LONGUEUR;
         Grandeur result = instance.getGrandeur();
         Assert.assertEquals(expResult, result);
@@ -74,7 +74,7 @@ public class UniteTest {
     @Test
     public void testGetNom() {
         LOG.log(Level.INFO, "TEST ============= testGetNom");
-        Unite instance = new Unite(Grandeur.LONGUEUR, "test", null, true, BigDecimal.ZERO, BigDecimal.ZERO);
+        Unite instance = new Unite(Grandeur.LONGUEUR, "test", null, BigDecimal.ZERO, BigDecimal.ZERO);
         String expResult = "test";
         String result = instance.getNom();
         Assert.assertEquals(expResult, result);
@@ -98,7 +98,7 @@ public class UniteTest {
     @Test
     public void testGetRatio() {
         LOG.log(Level.INFO, "TEST ============= testGetRatio");
-        Unite instance = new Unite(Grandeur.LONGUEUR, null, null, true, new BigDecimal("42"), BigDecimal.ZERO);
+        Unite instance = new Unite(Grandeur.LONGUEUR, null, null, new BigDecimal("42"), BigDecimal.ZERO);
         BigDecimal expResult = new BigDecimal("42");
         BigDecimal result = instance.getRatio();
         Assert.assertEquals(expResult, result);
@@ -145,7 +145,7 @@ public class UniteTest {
     @Test
     public void testGetSymbole() {
         LOG.log(Level.INFO, "TEST ============= testGetSymbole");
-        Unite instance = new Unite(Grandeur.LONGUEUR, null, "symbole", true, BigDecimal.ZERO, BigDecimal.ZERO);
+        Unite instance = new Unite(Grandeur.LONGUEUR, null, "symbole", BigDecimal.ZERO, BigDecimal.ZERO);
         String expResult = "symbole";
         String result = instance.getSymbole();
         assertEquals(expResult, result);

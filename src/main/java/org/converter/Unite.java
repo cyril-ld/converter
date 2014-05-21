@@ -51,11 +51,10 @@ public class Unite {
      * @param grandeur
      * @param nom
      * @param symbole
-     * @param isEtalon
      * @param ratio
      * @param decalage
      */
-    public Unite(Grandeur grandeur, String nom, String symbole, boolean isEtalon, BigDecimal ratio, BigDecimal decalage) {
+    public Unite(Grandeur grandeur, String nom, String symbole, BigDecimal ratio, BigDecimal decalage) {
         this.grandeur = grandeur;
         this.nom = nom;
         this.symbole = symbole;

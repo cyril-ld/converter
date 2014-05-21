@@ -83,7 +83,7 @@ public class MesureTest {
     @Test
     public void testSetUnite() {
         LOG.log(Level.INFO, "TEST ============= setUnite");
-        Unite unite = new Unite(Grandeur.LONGUEUR, "test", "test", true, BigDecimal.ZERO, BigDecimal.ZERO);
+        Unite unite = new Unite(Grandeur.LONGUEUR, "test", "test", BigDecimal.ZERO, BigDecimal.ZERO);
         Mesure instance = new Mesure();
         instance.setUnite(unite);
         Assert.assertEquals(unite, instance.getUnite());
