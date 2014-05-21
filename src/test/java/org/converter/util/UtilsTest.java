@@ -5,6 +5,7 @@
  */
 package org.converter.util;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,10 +15,8 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -48,31 +47,38 @@ public class UtilsTest {
     /**
      * Test of getGrandeurFromString method, of class Utils.
      */
-    @Ignore
     @Test
     public void testGetGrandeurFromString() {
-        LOG.log(Level.INFO, "TEST ============= getGrandeurFromString");
-        String grandeur = "";
-        Grandeur expResult = null;
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromString");
+        String grandeur = "temperature";
+        Grandeur expResult = Grandeur.TEMPERATURE;
         Grandeur result = Utils.getGrandeurFromString(grandeur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Assert.assertEquals(expResult, result);
     }
 
     /**
      * Test of getListeUnitesDepuisGrandeur method, of class Utils.
      */
-    @Ignore
     @Test
     public void testGetListeUnitesDepuisGrandeur() {
-        LOG.log(Level.INFO, "TEST ============= getListeUnitesDepuisGrandeur");
-        Grandeur grandeur = null;
-        List<Unite> expResult = null;
+        LOG.log(Level.INFO, "TEST ============= testGetListeUnitesDepuisGrandeur");
+        Grandeur grandeur = Grandeur.LONGUEUR;
         List<Unite> result = Utils.getListeUnitesDepuisGrandeur(grandeur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean toutesMesuresDeMemeGrandeur = false;
+        int i = 0;
+
+        for (Unite unite : result) {
+            if (unite.getGrandeur() != grandeur) {
+                break;
+            }
+            i++;
+        }
+
+        if (i == result.size()) {
+            toutesMesuresDeMemeGrandeur = true;
+        }
+
+        Assert.assertEquals(true, toutesMesuresDeMemeGrandeur);
     }
 
     /**
@@ -80,7 +86,7 @@ public class UtilsTest {
      */
     @Test
     public void testGetUniteDepuisNomUnite() {
-        LOG.log(Level.INFO, "TEST ============= getUniteDepuisNomUnite");
+        LOG.log(Level.INFO, "TEST ============= testGetUniteDepuisNomUnite");
         Grandeur grandeur = Grandeur.LONGUEUR;
         String nomUniteCible = "millimetre";
         Unite result = Utils.getUniteDepuisNomUnite(grandeur, nomUniteCible);
@@ -92,7 +98,7 @@ public class UtilsTest {
      */
     @Test
     public void testGetGrandeurFromUnite_String() {
-        LOG.log(Level.INFO, "TEST ============= getGrandeurFromUnite");
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromUnite_String");
         String unite = "millimetre";
         Grandeur expResult = Grandeur.LONGUEUR;
         Grandeur result = Utils.getGrandeurFromUnite(unite);
@@ -156,6 +162,14 @@ public class UtilsTest {
         LOG.log(Level.INFO, "TEST ============= testGetUniteDepuisNomUniteException");
         Unite result = Utils.getUniteDepuisNomUnite(Grandeur.LONGUEUR, null);
         Assert.fail("Le système ne doit pas permettre de trouver une unité depuis une chaîne vide" + result.getNom());
+    }
+
+    @Test
+    public void testGetGrandeurFromUnite() {
+        LOG.log(Level.INFO, "TEST ============= testGetGrandeurFromUnite");
+        Unite unite = new Unite(Grandeur.LONGUEUR, null, null, BigDecimal.ZERO, BigDecimal.ZERO);
+        Grandeur expResult = Grandeur.LONGUEUR;
+        Assert.assertEquals(expResult, Utils.getGrandeurFromUnite(unite));
     }
 
     private static final Logger LOG = Logger.getLogger(UtilsTest.class.getName());

@@ -6,8 +6,6 @@
 package org.converter;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.util.List;
 import org.converter.util.Utils;
 
@@ -112,7 +110,7 @@ public class Mesure {
 
         List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(this.unite.getGrandeur());
         Mesure ret = null;
-        BigDecimal valeurUniteEtalon;
+        BigDecimal valeurUniteEtalon, valeurUniteCible;
 
         for (Unite uniteTemp : listeUnites) {
             if (uniteTemp.getNom().equalsIgnoreCase(nomUniteCible)) {
@@ -120,16 +118,12 @@ public class Mesure {
                 ret = new Mesure();
 
                 // On converti la valeur courante dans l'unité étalon : valeur mesure * ratio mesure par rapport à l'étalon
-                valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).subtract(this.unite.getDecalage());
+                valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).add(this.unite.getDecalage());
 
                 // On converti la valeur dans l'unité cible :
-                ret.setValeur(valeurUniteEtalon.multiply(new BigDecimal(BigInteger.ONE)).divide(uniteTemp.getRatio(), 15, RoundingMode.FLOOR));
+                valeurUniteCible = (valeurUniteEtalon.subtract(uniteTemp.getDecalage())).divide(uniteTemp.getRatio(), 15, BigDecimal.ROUND_FLOOR);
 
-                // Si l'unité a un décalage, on l'ajoute et on enlève 1 pour ne pas fausser la mesure
-                if (uniteTemp.getDecalage().doubleValue() != 0.0) {
-                    ret.setValeur(ret.getValeur().add(new BigDecimal(uniteTemp.getDecalage().toString())));
-                }
-
+                ret.setValeur(valeurUniteCible);
                 ret.setUnite(uniteTemp);
                 break;
             }

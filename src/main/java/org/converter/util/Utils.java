@@ -134,7 +134,7 @@ public class Utils {
 
         Grandeur ret;
 
-        switch (grandeur) {
+        switch (grandeur.toUpperCase()) {
             case "LONGUEUR":
                 ret = Grandeur.LONGUEUR;
                 break;
@@ -221,9 +221,6 @@ public class Utils {
             dom = db.parse(new FileInputStream("src/main/java/org/data/Unites.xml"));
             xPath = XPathFactory.newInstance().newXPath();
 
-            // TODO Ici pour rendre le code plus robuste, on pourrait blinder la recherche
-            // de la grandeur (prise en compte accents, majuscules, injections, etc.)
-            // Chemin des grandeurs dans le XML
             nomGrandeurPath = "/grandeurs/grandeur[unites/unite/@nom='" + unite.toLowerCase() + "']/@nom";
 
             // Récupération de la liste des noeuds de grandeurs
@@ -249,7 +246,7 @@ public class Utils {
      *
      * @return la grandeur correspondante
      */
-    public Grandeur getGrandeurFromUnite(Unite unite) {
-        return getGrandeurFromString(unite.getNom());
+    public static Grandeur getGrandeurFromUnite(Unite unite) {
+        return getGrandeurFromString(unite.getGrandeur().toString());
     }
 }

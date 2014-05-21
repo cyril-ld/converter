@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -125,7 +124,7 @@ public class UniteTest {
         Unite instance = new Unite();
         BigDecimal expResult = null;
         BigDecimal result = instance.getDecalage();
-        assertEquals(expResult, result);
+        Assert.assertEquals(expResult, result);
     }
 
     /**
@@ -134,9 +133,10 @@ public class UniteTest {
     @Test
     public void testSetDecalage() {
         System.out.println("setDecalage");
-        BigDecimal decalage = null;
+        BigDecimal decalage = new BigDecimal(BigInteger.ONE);
         Unite instance = new Unite();
         instance.setDecalage(decalage);
+        Assert.assertEquals(decalage, instance.getDecalage());
     }
 
     /**
@@ -148,7 +148,7 @@ public class UniteTest {
         Unite instance = new Unite(Grandeur.LONGUEUR, null, "symbole", BigDecimal.ZERO, BigDecimal.ZERO);
         String expResult = "symbole";
         String result = instance.getSymbole();
-        assertEquals(expResult, result);
+        Assert.assertEquals(expResult, result);
     }
 
     /**
@@ -156,10 +156,11 @@ public class UniteTest {
      */
     @Test
     public void testSetSymbole() {
-        System.out.println("setSymbole");
-        String symbole = "";
+        LOG.log(Level.INFO, "TEST ============= testSetSymbole");
+        String symbole = "test";
         Unite instance = new Unite();
         instance.setSymbole(symbole);
+        Assert.assertEquals(symbole, instance.getSymbole());
     }
 
 }

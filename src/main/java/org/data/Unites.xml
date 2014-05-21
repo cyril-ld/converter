@@ -31,9 +31,9 @@
     </grandeur>
     <grandeur nom="TEMPERATURE">
         <unites>
-            <unite nom="degre_celsius" symbole="°C" ratio="1"/>
-            <unite nom="kelvin" symbole="K" ratio="1" decalage="273.15"/>
-            <unite nom="Fahrenheit" symbole="°F" ratio="1.8" decalage="32"/>
+            <unite nom="degre_celsius" symbole="°C" ratio="1.8" decalage="32.0"/>
+            <unite nom="kelvin" symbole="K" ratio="1.8" decalage="-459.67"/>
+            <unite nom="Fahrenheit" symbole="°F" ratio="1.0"/>
         </unites>
     </grandeur>
 </grandeurs>
