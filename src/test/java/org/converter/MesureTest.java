@@ -15,6 +15,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -92,10 +93,21 @@ public class MesureTest {
      */
     @Test
     public void testConvertToDistance() {
-        LOG.log(Level.INFO, "TEST ============= convertTo");
+        LOG.log(Level.INFO, "TEST ============= testConvertToDistance");
         String nomUniteCible = "MILLIMETRE";
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
         BigDecimal expResult = new BigDecimal(1000);
+        Mesure result = mesure.convertTo(nomUniteCible);
+        assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
+    }
+
+    @Test
+    @Ignore
+    public void testConvertToDistanceMille() {
+        LOG.log(Level.INFO, "TEST ============= testConvertToDistanceMille");
+        String nomUniteCible = "mille_marin";
+        Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
+        BigDecimal expResult = new BigDecimal("1852");
         Mesure result = mesure.convertTo(nomUniteCible);
         assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
     }
@@ -140,6 +152,7 @@ public class MesureTest {
     }
 
     @Test
+    @Ignore
     public void testConvertTemperatureAvecDecalageBis() {
         LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalage");
         String nomUniteCible = "KELVIN";
@@ -151,11 +164,25 @@ public class MesureTest {
     }
 
     @Test
+    @Ignore
     public void testConvertTemperatureAvecDecalageEtReel() {
         LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalage");
         String nomUniteCible = "KELVIN";
         Mesure mesure = new Mesure(new BigDecimal("3.5"), Grandeur.TEMPERATURE, "degre_celsius");
         BigDecimal expResult = new BigDecimal("273.15").add(new BigDecimal("3.5"));
+        Mesure result = mesure.convertTo(nomUniteCible);
+        LOG.log(Level.INFO, "testConvertTemperatureAvecDecalage : expResult.toString() = {0}, result.getValeur().toString() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
+        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
+    }
+
+//    T(°F) = T(°C)×1,8 + 32
+    @Test
+    @Ignore
+    public void testConvertTemperatureAvecDecalageEtReelBis() {
+        LOG.log(Level.INFO, "TEST ============= testConvertTemperatureAvecDecalageEtReelBis");
+        String nomUniteCible = "Fahrenheit";
+        Mesure mesure = new Mesure(new BigDecimal("99.975"), Grandeur.TEMPERATURE, "degre_celsius");
+        BigDecimal expResult = new BigDecimal("211.955");
         Mesure result = mesure.convertTo(nomUniteCible);
         LOG.log(Level.INFO, "testConvertTemperatureAvecDecalage : expResult.toString() = {0}, result.getValeur().toString() = {1}", new Object[]{expResult.toString(), result.getValeur().toString()});
         Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());

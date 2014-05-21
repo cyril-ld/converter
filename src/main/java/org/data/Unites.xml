@@ -34,6 +34,7 @@
         <unites>
             <unite nom="degre_celsius" symbole="°C" ratio="1"/>
             <unite nom="kelvin" symbole="K" ratio="1" decalage="273.15"/>
+            <unite nom="Fahrenheit" symbole="°F" ratio="0.8474576271186441" decalage="-32"/>
         </unites>
     </grandeur>
 </grandeurs>
