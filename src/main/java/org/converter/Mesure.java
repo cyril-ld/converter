@@ -121,7 +121,7 @@ public class Mesure {
                 valeurUniteEtalon = this.valeur.multiply(this.unite.getRatio()).add(this.unite.getDecalage());
 
                 // On converti la valeur dans l'unité cible :
-                valeurUniteCible = (valeurUniteEtalon.subtract(uniteTemp.getDecalage())).divide(uniteTemp.getRatio(), 15, BigDecimal.ROUND_FLOOR);
+                valeurUniteCible = valeurUniteEtalon.subtract(uniteTemp.getDecalage()).divide(uniteTemp.getRatio(), 15, BigDecimal.ROUND_FLOOR);
 
                 ret.setValeur(valeurUniteCible);
                 ret.setUnite(uniteTemp);
