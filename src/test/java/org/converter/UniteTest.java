@@ -5,6 +5,8 @@
  */
 package org.converter;
 
+import org.mesure.Grandeur;
+import org.mesure.Unite;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.logging.Level;
@@ -56,18 +58,6 @@ public class UniteTest {
     }
 
     /**
-     * Test of setGrandeur method, of class Unite.
-     */
-    @Test
-    public void testSetGrandeur() {
-        LOG.log(Level.INFO, "TEST ============= testSetGrandeur");
-        Grandeur grandeur = Grandeur.COURANT_ELECTRIQUE;
-        Unite instance = new Unite();
-        instance.setGrandeur(grandeur);
-        Assert.assertEquals(instance.getGrandeur(), Grandeur.COURANT_ELECTRIQUE);
-    }
-
-    /**
      * Test of getNom method, of class Unite.
      */
     @Test
@@ -77,18 +67,6 @@ public class UniteTest {
         String expResult = "test";
         String result = instance.getNom();
         Assert.assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setNom method, of class Unite.
-     */
-    @Test
-    public void testSetNom() {
-        LOG.log(Level.INFO, "TEST ============= testSetNom");
-        String nom = "test";
-        Unite instance = new Unite();
-        instance.setNom(nom);
-        Assert.assertEquals(nom, instance.getNom());
     }
 
     /**
@@ -150,17 +128,4 @@ public class UniteTest {
         String result = instance.getSymbole();
         Assert.assertEquals(expResult, result);
     }
-
-    /**
-     * Test of setSymbole method, of class Unite.
-     */
-    @Test
-    public void testSetSymbole() {
-        LOG.log(Level.INFO, "TEST ============= testSetSymbole");
-        String symbole = "test";
-        Unite instance = new Unite();
-        instance.setSymbole(symbole);
-        Assert.assertEquals(symbole, instance.getSymbole());
-    }
-
 }

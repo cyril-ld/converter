@@ -5,6 +5,9 @@
  */
 package org.converter;
 
+import org.mesure.Grandeur;
+import org.mesure.Unite;
+import org.mesure.Mesure;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.logging.Level;

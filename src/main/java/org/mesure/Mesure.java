@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.converter;
+package org.mesure;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -66,7 +66,7 @@ public class Mesure {
     /**
      * Retourne la valeur de la mesure
      *
-     * @return
+     * @return la valeur
      */
     public BigDecimal getValeur() {
         return valeur;
@@ -75,7 +75,7 @@ public class Mesure {
     /**
      * Modifie la valeur de la mesure
      *
-     * @param valeur
+     * @param valeur - La valeur à donner à la mesure
      */
     public void setValeur(BigDecimal valeur) {
         this.valeur = valeur;
@@ -84,7 +84,7 @@ public class Mesure {
     /**
      * Retourne l'unité de la mesure
      *
-     * @return
+     * @return l'unité
      */
     public Unite getUnite() {
         return unite;
@@ -93,7 +93,7 @@ public class Mesure {
     /**
      * Modifie la valeur de l'unité
      *
-     * @param unite
+     * @param unite - l'unité à affecter à la mesure
      */
     public void setUnite(Unite unite) {
         this.unite = unite;

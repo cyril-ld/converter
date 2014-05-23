@@ -19,8 +19,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import org.converter.Grandeur;
-import org.converter.Unite;
+import org.mesure.Grandeur;
+import org.mesure.Unite;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -58,7 +58,6 @@ public class Utils {
     /**
      * Initialise la map des grandeurs depuis le fichier "Unites.xml" contenu
      * dans le dossier org.data
-     *
      */
     private static void initGrandeurs() {
 
@@ -71,6 +70,10 @@ public class Utils {
         NodeList grandeursList, unitesList;
         Unite uniteTemp;
         List<Unite> listeUnites;
+
+        // Construction de l'unité
+        Grandeur grandeurTmp;
+        String nomTmp, symboleTmp;
 
         if (grandeurs == null) {
             grandeurs = new HashMap<>();
@@ -102,12 +105,14 @@ public class Utils {
                     // Initialisation de la map des unités correspondant à la grandeur
                     for (int j = 0; j <= unitesList.getLength() - 1; j++) {
 
-                        uniteTemp = new Unite();
                         noeudCourant = unitesList.item(j);
 
-                        uniteTemp.setGrandeur(Utils.getGrandeurFromString(nomGrandeur));
-                        uniteTemp.setNom(noeudCourant.getAttributes().getNamedItem("nom").getNodeValue());
-                        uniteTemp.setSymbole(noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue());
+                        grandeurTmp = Utils.getGrandeurFromString(nomGrandeur);
+                        nomTmp = noeudCourant.getAttributes().getNamedItem("nom").getNodeValue();
+                        symboleTmp = noeudCourant.getAttributes().getNamedItem("symbole").getNodeValue();
+
+                        uniteTemp = new Unite(grandeurTmp, nomTmp, symboleTmp);
+
                         uniteTemp.setRatio(new BigDecimal(Double.parseDouble(noeudCourant.getAttributes().getNamedItem("ratio").getNodeValue())).round(MathContext.DECIMAL32));
                         if (noeudCourant.getAttributes().getNamedItem("decalage") == null) {
                             uniteTemp.setDecalage(new BigDecimal(BigInteger.ZERO));
@@ -171,7 +176,7 @@ public class Utils {
 
     /**
      *
-     * @param grandeur
+     * @param grandeur - La grandeur dont on souhaite récupérer la liste des unités
      *
      * @return la liste des unités associées à la grandeur, ou null si aucune
      *         unité n'existe dans le fichier de paramétrage pour la grandeur donnée.
@@ -185,10 +190,10 @@ public class Utils {
 
     /**
      *
-     * @param grandeur
-     * @param nomUniteCible
+     * @param grandeur      - La grandeur de l'unité
+     * @param nomUniteCible - Le nom de l'unité que l'on souhaite récupérer
      *
-     * @return
+     * @return l'unité initialisée avec ses informations depuis le fichier de configuration interne
      */
     public static Unite getUniteDepuisNomUnite(Grandeur grandeur, String nomUniteCible) {
         if (nomUniteCible == null || nomUniteCible.isEmpty()) {
