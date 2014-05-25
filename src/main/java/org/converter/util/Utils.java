@@ -28,28 +28,27 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * Classe permettant de faire des opérations utilitaires. Voir docs méthodes
- * pour plus d'infos.
+ * Utilitary class. Aims to give some services for the convertion of units
  *
  * @author Cyril
  */
 public class Utils {
 
     /**
-     * Logger par défaut
+     * Default logger
      */
     private static final Logger LOG = Logger.getLogger(Utils.class.getName());
 
     /**
-     * Map de stockage des ratios de conversion entre les unités. Chaque rang
-     * contient une grandeur qui contient tous les ratios de conversion entre
-     * les différentes unités de la grandeur considérée. Voir le fichier XML
-     * Unites.xml pour une meilleur compréhension.
+     * Storage map for units found into the resource file.
+     *
+     * Every range owns a scale / greatness and it own list of units. This list is a small init for conversions.
+     * See resources/Unites.xml for a representation of the data
      */
     private static Map<Grandeur, List<Unite>> grandeurs;
 
     /**
-     * Pas de constructeur public pour les classes privées !
+     * No public constructor available for Util classes
      */
     private Utils() {
 
@@ -81,7 +80,7 @@ public class Utils {
                 // Création des objets utilitaires
                 dbf = DocumentBuilderFactory.newInstance();
                 db = dbf.newDocumentBuilder();
-                dom = db.parse(new FileInputStream("src/main/java/org/data/Unites.xml"));
+                dom = db.parse(new FileInputStream("src/main/resources/Unites.xml"));
                 xPath = XPathFactory.newInstance().newXPath();
 
                 // Chemin des grandeurs dans le XML
@@ -230,7 +229,7 @@ public class Utils {
             // Création des objets utilitaires
             dbf = DocumentBuilderFactory.newInstance();
             db = dbf.newDocumentBuilder();
-            dom = db.parse(new FileInputStream("src/main/java/org/data/Unites.xml"));
+            dom = db.parse(new FileInputStream("src/main/resources/Unites.xml"));
             xPath = XPathFactory.newInstance().newXPath();
 
             nomGrandeurPath = "/grandeurs/grandeur[unites/unite/@nom='" + unite.toLowerCase() + "']/@nom";

@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.converter;
+package org.mesure;
 
-import org.mesure.Grandeur;
-import org.mesure.Unite;
-import org.mesure.Mesure;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.logging.Level;
@@ -18,6 +15,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mesure.Grandeur;
+import org.mesure.Mesure;
+import org.mesure.Unite;
 
 /**
  *
@@ -101,7 +101,7 @@ public class MesureTest {
         Mesure mesure = new Mesure(new BigDecimal(1), Grandeur.LONGUEUR, "METRE");
         BigDecimal expResult = new BigDecimal(1000);
         Mesure result = mesure.convertTo(nomUniteCible);
-        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue(), 0.0);
+        Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
     }
 
     @Test
