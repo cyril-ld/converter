@@ -55,8 +55,7 @@ public class Utils {
     }
 
     /**
-     * Initialise la map des grandeurs depuis le fichier "Unites.xml" contenu
-     * dans le dossier org.data
+     * Initializes the units private map from the API config file.
      */
     private static void initGrandeurs() {
 
@@ -130,16 +129,14 @@ public class Utils {
     }
 
     /**
-     * Retourne la valeur de l'énumération correspondant à la chaîne de
-     * caractères demandée.
      *
-     * @param grandeur la représentation de la grandeur sous forme de chaîne de
-     *                 caractères
+     * Returns a size from a string represanted size.
      *
-     * @return Grandeur, la grandeur correspondante
+     * @param grandeur the size's string representation.
      *
-     * @throws IllegalArgumentException si la chaîne demandée ne correspond à
-     *                                  aucune grandeur connue
+     * @return Grandeur, the corresponding size
+     *
+     * @throws IllegalArgumentException if the given string does not match any size
      */
     public static Grandeur getGrandeurFromString(String grandeur) {
 
@@ -175,10 +172,9 @@ public class Utils {
 
     /**
      *
-     * @param grandeur - La grandeur dont on souhaite récupérer la liste des unités
+     * @param grandeur - Units of this size will be returned
      *
-     * @return la liste des unités associées à la grandeur, ou null si aucune
-     *         unité n'existe dans le fichier de paramétrage pour la grandeur donnée.
+     * @return a list of units corresponding to the given size.
      */
     public static List<Unite> getListeUnitesDepuisGrandeur(Grandeur grandeur) {
         if (grandeurs == null || grandeurs.isEmpty()) {
@@ -188,9 +184,10 @@ public class Utils {
     }
 
     /**
+     * Returns an unit object from the given parameters.
      *
-     * @param grandeur      - La grandeur de l'unité
-     * @param nomUniteCible - Le nom de l'unité que l'on souhaite récupérer
+     * @param grandeur      - The size of the unit
+     * @param nomUniteCible - Unit's name that we want to get back from this method
      *
      * @return l'unité initialisée avec ses informations depuis le fichier de configuration interne
      */
@@ -209,11 +206,11 @@ public class Utils {
     }
 
     /**
-     * Permet de retrouver une grandeur depuis une unité particulière.
+     * Find back a size from an unit name
      *
-     * @param unite - l'unité dont on souhaite retrouver la grandeur
+     * @param unite - the unit size if existing in the collection
      *
-     * @return la grandeur correspondante
+     * @return the corresponding size
      */
     public static Grandeur getGrandeurFromUnite(String unite) {
 
@@ -251,11 +248,11 @@ public class Utils {
     }
 
     /**
-     * Permet de retrouver une grandeur depuis une unité particulière.
+     * Find back a size from an unit name.
      *
-     * @param unite - l'unité dont on souhaite retrouver la grandeur.
+     * @param unite - unit that the method will give back the size
      *
-     * @return la grandeur correspondante
+     * @return corresponding size
      */
     public static Grandeur getGrandeurFromUnite(Unite unite) {
         return getGrandeurFromString(unite.getGrandeur().toString());
