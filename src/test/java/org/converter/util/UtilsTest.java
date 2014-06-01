@@ -197,6 +197,12 @@ public class UtilsTest {
         Assert.assertEquals(new BigDecimal("20.000000000000000"), mesure.convertTo("metre").getValeur());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void TestAddUnitIntoReferential() {
+        LOG.log(Level.INFO, "TEST ============= TestAddUnitIntoReferential");
+        Utils.addUnitIntoReferential(null);
+    }
+
     private static final Logger LOG = Logger.getLogger(UtilsTest.class.getName());
 
 }

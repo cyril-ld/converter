@@ -224,6 +224,20 @@ public class MesureTest {
         new Mesure().convertTo(null);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor() {
+        LOG.log(Level.INFO, "TEST ============= testConvertToWithEmptyTarget");
+        Mesure test = new Mesure(null, null);
+        Assert.fail("On ne doit pas autoriser la construction avec paramètres vides !" + test.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorSecond() {
+        LOG.log(Level.INFO, "TEST ============= testConvertToWithEmptyTarget");
+        Mesure test = new Mesure(null, null, null);
+        Assert.fail("On ne doit pas autoriser la construction avec paramètres vides !" + test.toString());
+    }
+
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());
 
 }
