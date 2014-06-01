@@ -265,7 +265,7 @@ public class Utils {
      */
     public static void addUnitIntoReferential(Unite unite) {
         if (unite == null || unite.getGrandeur() == null || unite.getNom() == null || unite.getRatio() == null) {
-            throw new RuntimeException("Problème dans l'unitée passée en paramètre !");
+            throw new IllegalArgumentException("Problème dans l'unitée passée en paramètre !");
         }
 
         boolean premiereUnite = false;
