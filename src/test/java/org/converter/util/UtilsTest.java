@@ -5,12 +5,10 @@
  */
 package org.converter.util;
 
-import org.mesure.Grandeur;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.mesure.Unite;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -18,6 +16,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mesure.Grandeur;
+import org.mesure.Mesure;
+import org.mesure.Unite;
 
 /**
  *
@@ -170,6 +171,30 @@ public class UtilsTest {
         Unite unite = new Unite(Grandeur.LONGUEUR, null, null, BigDecimal.ZERO, BigDecimal.ZERO);
         Grandeur expResult = Grandeur.LONGUEUR;
         Assert.assertEquals(expResult, Utils.getGrandeurFromUnite(unite));
+    }
+
+    @Test
+    public void testAddUnitIntoReferential() {
+        LOG.log(Level.INFO, "TEST ============= testAddUnitIntoReferential");
+        Unite unite = new Unite(Grandeur.LONGUEUR, "Truc", null, BigDecimal.ZERO, BigDecimal.ZERO);
+        Utils.addUnitIntoReferential(unite);
+        String expResult = "Truc";
+        Assert.assertEquals(expResult, Utils.getUniteDepuisNomUnite(Grandeur.LONGUEUR, "Truc").getNom());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddExistingUnitIntoReferential() {
+        LOG.log(Level.INFO, "TEST ============= testAddExistingUnitIntoReferential");
+        Unite unite = new Unite(Grandeur.LONGUEUR, "metre", null, BigDecimal.ZERO, BigDecimal.ZERO);
+        Utils.addUnitIntoReferential(unite);
+    }
+
+    @Test
+    public void convertCreatedUnits() {
+        LOG.log(Level.INFO, "TEST ============= convertCreatedUnits");
+        Unite unite = new Unite(Grandeur.LONGUEUR, "test1", null, BigDecimal.TEN, BigDecimal.ZERO);
+        Mesure mesure = new Mesure(new BigDecimal("2"), unite);
+        Assert.assertEquals(new BigDecimal("20.000000000000000"), mesure.convertTo("metre").getValeur());
     }
 
     private static final Logger LOG = Logger.getLogger(UtilsTest.class.getName());

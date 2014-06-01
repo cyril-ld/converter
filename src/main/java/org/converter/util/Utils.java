@@ -257,4 +257,35 @@ public class Utils {
     public static Grandeur getGrandeurFromUnite(Unite unite) {
         return getGrandeurFromString(unite.getGrandeur().toString());
     }
+
+    /**
+     * Add a unit into the local collection
+     *
+     * @param unite - the unit to be added
+     */
+    public static void addUnitIntoReferential(Unite unite) {
+        if (unite == null || unite.getGrandeur() == null || unite.getNom() == null || unite.getRatio() == null) {
+            throw new RuntimeException("Problème dans l'unitée passée en paramètre !");
+        }
+
+        boolean premiereUnite = false;
+        List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(unite.getGrandeur());
+
+        if (listeUnites == null) {
+            listeUnites = new ArrayList<>();
+            premiereUnite = true;
+        }
+
+        for (Unite uniteTmp : listeUnites) {
+            if (uniteTmp.getNom() != null && uniteTmp.getNom().equalsIgnoreCase(unite.getNom())) {
+                throw new IllegalArgumentException("L'unité existe déjà !");
+            }
+        }
+
+        listeUnites.add(unite);
+
+        if (premiereUnite) {
+            grandeurs.put(unite.getGrandeur(), listeUnites);
+        }
+    }
 }
