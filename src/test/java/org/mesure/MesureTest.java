@@ -15,9 +15,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mesure.Grandeur;
-import org.mesure.Mesure;
-import org.mesure.Unite;
 
 /**
  *
@@ -50,7 +47,7 @@ public class MesureTest {
     @Test
     public void testGetValeur() {
         LOG.log(Level.INFO, "TEST ============= getValeur");
-        Mesure instance = new Mesure(new BigDecimal(0.0), null);
+        Mesure instance = new Mesure(new BigDecimal(0.0), new Unite());
         BigDecimal expResult = new BigDecimal(0.0);
         Assert.assertEquals(expResult.doubleValue(), instance.getValeur().doubleValue(), 0.0);
     }
@@ -219,6 +216,12 @@ public class MesureTest {
         BigDecimal expResult = new BigDecimal("1");
         Mesure result = mesure.convertTo(nomUniteCible);
         Assert.assertEquals(expResult.doubleValue(), result.getValeur().doubleValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConvertToWithEmptyTarget() {
+        LOG.log(Level.INFO, "TEST ============= testConvertToWithEmptyTarget");
+        new Mesure().convertTo(null);
     }
 
     private static final Logger LOG = Logger.getLogger(MesureTest.class.getName());

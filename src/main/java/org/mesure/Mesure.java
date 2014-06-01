@@ -47,6 +47,11 @@ public class Mesure {
      * @param unite  - l'unité dans laquelle exprimer la mesure
      */
     public Mesure(BigDecimal valeur, Unite unite) {
+
+        if (valeur == null || unite == null) {
+            throw new IllegalArgumentException("Les paramètres ne peuvent pas être nuls !");
+        }
+
         this.valeur = valeur;
         this.unite = unite;
     }
@@ -59,6 +64,11 @@ public class Mesure {
      * @param nomUnite - unité de la mesure
      */
     public Mesure(BigDecimal valeur, Grandeur grandeur, String nomUnite) {
+
+        if (valeur == null || grandeur == null || nomUnite == null || nomUnite.isEmpty()) {
+            throw new IllegalArgumentException("Les paramètres ne peuvent pas être nuls !");
+        }
+
         this.valeur = valeur;
         this.unite = Utils.getUniteDepuisNomUnite(grandeur, nomUnite);
     }
@@ -107,6 +117,10 @@ public class Mesure {
      * @return la mesure une fois convertie
      */
     public Mesure convertTo(String nomUniteCible) {
+
+        if (nomUniteCible == null || nomUniteCible.isEmpty()) {
+            throw new IllegalArgumentException("L'unité cible doit être renseignée !");
+        }
 
         List<Unite> listeUnites = Utils.getListeUnitesDepuisGrandeur(this.unite.getGrandeur());
         Mesure ret = null;
