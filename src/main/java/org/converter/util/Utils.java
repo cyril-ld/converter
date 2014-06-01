@@ -57,7 +57,7 @@ public class Utils {
     /**
      * Initializes the units private map from the API config file.
      */
-    private static void initGrandeurs() {
+    public static void initGrandeurs() {
 
         DocumentBuilderFactory dbf;
         DocumentBuilder db;
